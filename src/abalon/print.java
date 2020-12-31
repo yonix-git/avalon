@@ -11,6 +11,13 @@ package abalon;
  */
 public class print {
 
+    print(board B) {
+       printBoard( B);
+    }
+    print(){
+        
+    }
+
     public void printBoard(board B){
         for (int i = 0; i < B.getGameBoard().length; i++) {
             for (int j = 0; j < B.getGameBoard()[0].length; j++) {

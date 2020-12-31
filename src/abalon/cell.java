@@ -76,6 +76,10 @@ public class cell {
         }
     } 
 
+        void setType(typeOfCell type) {
+            this.type = type;
+    }
+
 }
 
 enum typeOfCell {

@@ -55,10 +55,15 @@ public class play {
                 direction = in.nextLine();
             } while (!isPusible(point, direction));
 
-            boolean m = isPusible(point, direction);
-            System.out.println(m);
-
+            /*boolean m = isPusible(point, direction);
+            System.out.println(m);*/
             P = !P;
+        }
+        if (B.getAmountOfWhite() == 8) {
+            System.out.println("black wins !!!!!!!!!!!!!!");
+        }
+        if (B.getAmountOfBlack() == 8) {
+            System.out.println("white wins !!!!!!!!!!!!!!");
         }
 
     }
@@ -80,30 +85,6 @@ public class play {
         }
     }
 
-    private void move(board B, cell C, String direction) {
-
-        switch (direction) {
-            case "w": {
-                break;
-            }
-            case "e": {
-                break;
-            }
-            case "d": {
-                break;
-            }
-            case "x": {
-                break;
-            }
-            case "z": {
-                break;
-            }
-            case "a": {
-                break;
-            }
-            default:
-        }
-    }
 
     private boolean isPusible(cellIndexes point, String direction) {
 
@@ -114,31 +95,49 @@ public class play {
             case "w": {
                 amount = chackWithDirection(point, -1, -1);
                 pusible = canMove(amount, point);
+                if (pusible) {
+                    move(point, -1, -1);
+                }
                 break;
             }
             case "e": {
                 amount = chackWithDirection(point, -1, 1);
                 pusible = canMove(amount, point);
+                if (pusible) {
+                    move(point, -1, 1);
+                }
                 break;
             }
             case "d": {
                 amount = chackWithDirection(point, 0, 2);
                 pusible = canMove(amount, point);
+                if (pusible) {
+                    move(point, 0, 2);
+                }
                 break;
             }
             case "x": {
                 amount = chackWithDirection(point, 1, 1);
                 pusible = canMove(amount, point);
+                if (pusible) {
+                    move(point, 1, 1);
+                }
                 break;
             }
             case "z": {
                 amount = chackWithDirection(point, 1, -1);
                 pusible = canMove(amount, point);
+                if (pusible) {
+                    move(point, 1, -1);
+                }
                 break;
             }
             case "a": {
                 amount = chackWithDirection(point, 0, -2);
                 pusible = canMove(amount, point);
+                if (pusible) {
+                    move(point, 0, -2);
+                }
                 break;
             }
             default:
@@ -152,19 +151,18 @@ public class play {
 
         if (K <= L) {
             return false;
-        } else/* if (B.getGameBoard()[amount.getR()][amount.getC()].equals(B.getGameBoard()[point.getR()][point.getC()])) {
-        return false;
-        }else if (P && B.getGameBoard()[amount.getR()][amount.getC()].equals(typeOfCell.white)) {
-        return false;
-        }else if (!P && B.getGameBoard()[amount.getR()][amount.getC()].equals(typeOfCell.black)) {
-        return false;
-        }else */ if (B.getGameBoard()[amount.getR()][amount.getC()].getType().equals(typeOfCell.empty)) {
+        } else if (B.getGameBoard()[amount.getR()][amount.getC()].getType().equals(typeOfCell.empty)) {
             return true;
         } else if (L != 0 && B.getGameBoard()[amount.getR()][amount.getC()].getType().equals(typeOfCell.notUsed)) {
+            if (P) {
+                B.setAmountOfWhite(B.getAmountOfWhite() - 1);
+            }else{
+                B.setAmountOfBlack(B.getAmountOfBlack() - 1);
+            }
             return true;
-        }
+        }/*
         System.out.println(amount.getR());
-        System.out.println(amount.getC());
+        System.out.println(amount.getC());*/
         return false;
     }
 
@@ -188,6 +186,21 @@ public class play {
         point_1.setC(point.getC() + (K + L) * j);
         return point_1;
 
+    }
+    private void move(cellIndexes point, int i, int j) {
+        
+        for (int S = K + L;S != 0; S--) {
+            if(B.getGameBoard()[point.getR() + (S * i)][point.getC() + (S * j)].getType().equals(typeOfCell.notUsed)){
+                continue;
+            }else{
+        typeOfCell keep = B.getGameBoard()[point.getR() + (S * i) - i][point.getC() + (S * j) - j].getType();
+            B.getGameBoard()[point.getR() + (S * i)][point.getC() + (S * j)].setType(keep);
+            }
+        }
+        B.getGameBoard()[point.getR()][point.getC()].setType(typeOfCell.empty);
+        
+        print P = new print(B);
+        
     }
 
 }
