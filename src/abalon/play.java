@@ -160,9 +160,7 @@ public class play {
                 B.setAmountOfBlack(B.getAmountOfBlack() - 1);
             }
             return true;
-        }/*
-        System.out.println(amount.getR());
-        System.out.println(amount.getC());*/
+        }
         return false;
     }
 

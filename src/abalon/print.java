@@ -46,18 +46,5 @@ public class print {
         
         System.out.println(B.getAmountOfBlack());
         System.out.println(B.getAmountOfWhite());
-        /*
-        for (int i = 0; i < 4; i++) {
-        System.out.println("");
-        }
-        System.out.println("    3 3 3 3 3    ");
-        System.out.println("   3 3 3 3 3 3   ");
-        System.out.println("  1 1 3 3 3 1 1  ");
-        System.out.println(" 1 1 1 1 1 1 1 1 ");
-        System.out.println("1 1 1 1 1 1 1 1 1");
-        System.out.println(" 1 1 1 1 1 1 1 1 ");
-        System.out.println("  1 1 2 2 2 1 1  ");
-        System.out.println("   2 2 2 2 2 2   ");
-        System.out.println("    2 2 2 2 2    ");*/
     }
 }
