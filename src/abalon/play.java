@@ -5,6 +5,9 @@
  */
 package abalon;
 
+import java.nio.Buffer;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -12,6 +15,9 @@ import java.util.Scanner;
  * @author user
  */
 public class play {
+    
+    private board B;
+    private boolean P = true;
 
     public play() {
         this.B = new board();
@@ -20,10 +26,8 @@ public class play {
     public play(board B) {
         this.B = B;
     }
-    private board B;
-    private boolean P = true;
 
-    public void playing(board B) {
+    public void playing(BufferedReader b1, BufferedReader b2) throws IOException {
 
         String direction;
         while (B.getAmountOfBlack() > 8 && B.getAmountOfWhite() > 8) {
@@ -38,12 +42,22 @@ public class play {
                 do {
 
                     System.out.println("put row:");
-                    point.setR(S.nextInt());
+                    if (P) {
+                    point.setR(Integer.parseInt(b1.readLine()));
+                    }else{
+                        point.setR(Integer.parseInt(b2.readLine()));
+                    }
+                    
                 } while (!(point.getR() > 0 && point.getR() < 10));
                 do {
 
                     System.out.println("put colomn:");
-                    point.setC(S.nextInt());
+                    if (P) {
+                        point.setC(Integer.parseInt(b1.readLine()));
+                    }else{
+                        point.setC(Integer.parseInt(b2.readLine()));
+                    }
+                    
                 } while (!(point.getC() > 1 && point.getC() < 19));
 
             } while (!chackPoint(point.getR(), point.getC()));
@@ -52,7 +66,12 @@ public class play {
 
             do {
                 System.out.println("put dir:");
-                direction = in.nextLine();
+                if (P) {
+                    direction = b1.readLine();
+                }else{
+                    direction = b2.readLine();
+                }
+                
             } while (!isPusible(point, direction));
 
             /*boolean m = isPusible(point, direction);

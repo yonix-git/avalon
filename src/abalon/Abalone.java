@@ -5,6 +5,8 @@
  */
 package abalon;
 
+import java.io.IOException;
+
 /**
  *
  * @author user
@@ -14,13 +16,16 @@ public class Abalone {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
-        board B = new board();
+        avalonServer a = new avalonServer();
+        a.server();
+        
+        /* board B = new board();
         print P = new print();
         P.printBoard(B);
         play PL = new play();
-        PL.playing(B);
+        PL.playing();*/
     }
 
 }
