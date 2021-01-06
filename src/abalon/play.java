@@ -62,7 +62,7 @@ public class play {
 
             } while (!chackPoint(point.getR(), point.getC()));
 
-            System.out.println("good");
+            System.out.println("-----");
 
             do {
                 System.out.println("put dir:");
@@ -74,8 +74,6 @@ public class play {
                 
             } while (!isPusible(point, direction));
 
-            /*boolean m = isPusible(point, direction);
-            System.out.println(m);*/
             P = !P;
         }
         if (B.getAmountOfWhite() == 8) {
@@ -195,9 +193,6 @@ public class play {
             for (L = 0; L < 2 && B.getGameBoard()[point.getR() + (i * (K + L))][point.getC() + (j * (K + L))].getType().equals(typeOfCell.black); L++);
         }
         cellIndexes point_1 = new cellIndexes();
-
-        System.out.println("K = " + K);
-        System.out.println("L = " + L);
 
         point_1.setR(point.getR() + (K + L) * i);
         point_1.setC(point.getC() + (K + L) * j);
