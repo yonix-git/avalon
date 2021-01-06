@@ -35,7 +35,7 @@ public class thred extends Thread{
         
         InputStreamReader input1 = new InputStreamReader(mySocket1.getInputStream());
         b1 = new BufferedReader(input1);
-        InputStreamReader input2 = new InputStreamReader(mySocket1.getInputStream());
+        InputStreamReader input2 = new InputStreamReader(mySocket2.getInputStream());
         b2 = new BufferedReader(input2);
         
         p.printBoard(B);
