@@ -33,8 +33,6 @@ public class play {
         while (B.getAmountOfBlack() > 8 && B.getAmountOfWhite() > 8) {
 
             direction = null;
-            Scanner S = new Scanner(System.in);
-            Scanner in = new Scanner(System.in);
             cellIndexes point = new cellIndexes();
 
             do {
@@ -43,19 +41,50 @@ public class play {
 
                     System.out.println("put row:");
                     if (P) {
-                    point.setR(Integer.parseInt(b1.readLine()));
+                        String S = b1.readLine();
+                        if (S.equals("1")||S.equals("2")||S.equals("3")||
+                                S.equals("4")||S.equals("5")||S.equals("6")||
+                                S.equals("7")||S.equals("8")||S.equals("9")) {
+                            
+                        point.setR(Integer.parseInt(S));
+                        }
                     }else{
-                        point.setR(Integer.parseInt(b2.readLine()));
+                        String S = b2.readLine();
+                        if (S.equals("1")||S.equals("2")||S.equals("3")||
+                                S.equals("4")||S.equals("5")||S.equals("6")||
+                                S.equals("7")||S.equals("8")||S.equals("9")) {
+                            
+                        point.setR(Integer.parseInt(S));
+                        }
                     }
                     
                 } while (!(point.getR() > 0 && point.getR() < 10));
+                
                 do {
 
                     System.out.println("put colomn:");
                     if (P) {
-                        point.setC(Integer.parseInt(b1.readLine()));
+                        String S = b1.readLine();
+                        if (S.equals("2")||S.equals("3")||S.equals("4")||
+                                S.equals("5")||S.equals("6")||S.equals("7")||
+                                S.equals("8")||S.equals("9")||S.equals("10")||
+                                S.equals("11")||S.equals("12")||S.equals("13")||
+                                S.equals("14")||S.equals("15")||S.equals("16")||
+                                S.equals("17")||S.equals("18")) {
+                            
+                        point.setC(Integer.parseInt(S));
+                        }
                     }else{
-                        point.setC(Integer.parseInt(b2.readLine()));
+                        String S = b2.readLine();
+                        if (S.equals("2")||S.equals("3")||S.equals("4")||
+                                S.equals("5")||S.equals("6")||S.equals("7")||
+                                S.equals("8")||S.equals("9")||S.equals("10")||
+                                S.equals("11")||S.equals("12")||S.equals("13")||
+                                S.equals("14")||S.equals("15")||S.equals("16")||
+                                S.equals("17")||S.equals("18")) {
+                            
+                        point.setC(Integer.parseInt(S));
+                        }
                     }
                     
                 } while (!(point.getC() > 1 && point.getC() < 19));
