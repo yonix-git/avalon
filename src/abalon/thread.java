@@ -15,7 +15,7 @@ import java.net.Socket;
  *
  * @author user
  */
-public class thred extends Thread{
+public class thread extends Thread{
     
     private  Socket mySocket1, mySocket2;
     private play pl = new play();
@@ -28,7 +28,7 @@ public class thred extends Thread{
     
     }*/
     
-    public thred(Socket mySocket1, Socket mySocket2) throws IOException{
+    public thread(Socket mySocket1, Socket mySocket2) throws IOException{
         
         this.mySocket1 = mySocket1;
         this.mySocket2 = mySocket2;

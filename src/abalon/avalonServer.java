@@ -35,7 +35,7 @@ public class avalonServer {
             mySocket1 = myServer.accept();
             mySocket2 = myServer.accept();
      
-            thred T = new thred(mySocket1, mySocket2);
+            thread T = new thread(mySocket1, mySocket2);
         }
     }
 
