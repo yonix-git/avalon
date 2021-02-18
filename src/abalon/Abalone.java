@@ -20,6 +20,7 @@ public class Abalone {
         
         avalonServer a = new avalonServer();
         a.server();
+        //*sqlData b = new sqlData();
         
         /* board B = new board();
         print P = new print();

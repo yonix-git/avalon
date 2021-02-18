@@ -8,6 +8,7 @@ package abalon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -38,6 +39,10 @@ public class thread extends Thread{
         InputStreamReader input2 = new InputStreamReader(mySocket2.getInputStream());
         b2 = new BufferedReader(input2);
         
+        /*ObjectOutputStream obj1 = new ObjectOutputStream(mySocket1.getOutputStream());
+        ObjectOutputStream obj2 = new ObjectOutputStream(mySocket2.getOutputStream());
+        obj1.writeObject(B);
+        obj2.writeObject(B);*/
         p.printBoard(B);
         pl.playing( b1, b2);
         
