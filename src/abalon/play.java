@@ -5,10 +5,12 @@
  */
 package abalon;
 
-import java.nio.Buffer;
+import myClasses.print;
+import myClasses.cellIndexes;
+import myClasses.typeOfCell;
+import myClasses.board;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  *
@@ -245,7 +247,7 @@ public class play {
         }
         B.getGameBoard()[point.getR()][point.getC()].setType(typeOfCell.empty);
         
-        print P = new print(B);
+        myClasses.print P = new print(B);
         
     }
 
