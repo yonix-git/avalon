@@ -11,6 +11,9 @@ import myClasses.typeOfCell;
 import myClasses.board;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 /**
  *
@@ -20,6 +23,8 @@ public class play {
     
     private board B;
     private boolean P = true;
+    private BufferedReader b1 = null;
+    private BufferedReader b2 = null;
 
     public play() {
         this.B = new board();
@@ -29,8 +34,14 @@ public class play {
         this.B = B;
     }
 
-    public void playing(BufferedReader b1, BufferedReader b2) throws IOException {
+    public void playing(Socket mySocket1, Socket mySocket2) throws IOException {
 
+        InputStreamReader input1 = new InputStreamReader(mySocket1.getInputStream());
+        b1 = new BufferedReader(input1);
+        InputStreamReader input2 = new InputStreamReader(mySocket2.getInputStream());
+        b2 = new BufferedReader(input2);
+        PrintWriter pr1 = new PrintWriter(mySocket1.getOutputStream());
+        PrintWriter pr2 = new PrintWriter(mySocket2.getOutputStream());
         try {
             String direction;
             while (B.getAmountOfBlack() > 8 && B.getAmountOfWhite() > 8) {

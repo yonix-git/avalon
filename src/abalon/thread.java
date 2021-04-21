@@ -22,23 +22,23 @@ public class thread extends Thread{
     private play pl = new play();
     print p = new print();
     board B = new board();
-    private BufferedReader b1 = null;
-    private BufferedReader b2 = null;
+    /*private BufferedReader b1 = null;
+    private BufferedReader b2 = null;*/
    
     
     public thread(Socket mySocket1, Socket mySocket2) throws IOException{
         
         this.mySocket1 = mySocket1;
-        this.mySocket2 = mySocket2;
+        this.mySocket2 = mySocket1;
         
-        InputStreamReader input1 = new InputStreamReader(mySocket1.getInputStream());
+        /*InputStreamReader input1 = new InputStreamReader(mySocket1.getInputStream());
         b1 = new BufferedReader(input1);
         InputStreamReader input2 = new InputStreamReader(mySocket2.getInputStream());
-        b2 = new BufferedReader(input2);
+        b2 = new BufferedReader(input2);*/
         
         
         p.printBoard(B);
-        pl.playing( b1, b2);
+        pl.playing( mySocket1, mySocket1);
         
     }
     /*  @Override

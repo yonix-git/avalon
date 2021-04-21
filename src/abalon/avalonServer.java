@@ -36,7 +36,7 @@ public class avalonServer {
         }
         
         Socket mySocket1, mySocket2;
-        board BToSeri = new board();
+        //board BToSeri = new board();
         while (true) {
             mySocket1 = myServer.accept();
             System.out.println("n1 is ready");
