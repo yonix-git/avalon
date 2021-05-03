@@ -18,6 +18,7 @@ public class Abalone {
      */
     public static void main(String[] args) throws IOException {
         
+        sqlData sql = new sqlData();
         avalonServer a = new avalonServer();
         a.server();
         //*sqlData b = new sqlData();

@@ -12,6 +12,7 @@ import myClasses.board;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -38,17 +39,20 @@ public class play {
 
         InputStreamReader input1 = new InputStreamReader(mySocket1.getInputStream());
         b1 = new BufferedReader(input1);
+        
         InputStreamReader input2 = new InputStreamReader(mySocket2.getInputStream());
         b2 = new BufferedReader(input2);
-        PrintWriter pr1 = new PrintWriter(mySocket1.getOutputStream());
-        PrintWriter pr2 = new PrintWriter(mySocket2.getOutputStream());
+        
+        ObjectOutputStream obj1 = new ObjectOutputStream(mySocket1.getOutputStream());
+        
+        //obj1.writeObject(this.B);
         try {
             String direction;
             while (B.getAmountOfBlack() > 8 && B.getAmountOfWhite() > 8) {
                 
                 direction = null;
                 cellIndexes point = new cellIndexes();
-                
+        
                 do {
                     
                     do {

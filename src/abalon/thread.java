@@ -29,7 +29,7 @@ public class thread extends Thread{
     public thread(Socket mySocket1, Socket mySocket2) throws IOException{
         
         this.mySocket1 = mySocket1;
-        this.mySocket2 = mySocket1;
+        this.mySocket2 = mySocket2;
         
         /*InputStreamReader input1 = new InputStreamReader(mySocket1.getInputStream());
         b1 = new BufferedReader(input1);
@@ -38,7 +38,7 @@ public class thread extends Thread{
         
         
         p.printBoard(B);
-        pl.playing( mySocket1, mySocket1);
+        pl.playing( mySocket1, mySocket2);
         
     }
     /*  @Override
