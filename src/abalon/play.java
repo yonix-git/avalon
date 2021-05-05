@@ -43,9 +43,7 @@ public class play {
         InputStreamReader input2 = new InputStreamReader(mySocket2.getInputStream());
         b2 = new BufferedReader(input2);
         
-        ObjectOutputStream obj1 = new ObjectOutputStream(mySocket1.getOutputStream());
         
-        //obj1.writeObject(this.B);
         try {
             String direction;
             while (B.getAmountOfBlack() > 8 && B.getAmountOfWhite() > 8) {
@@ -120,6 +118,13 @@ public class play {
                     }
                     
                 } while (!isPusible(point, direction));
+                if (P) {
+                    ObjectOutputStream obj1 = new ObjectOutputStream(mySocket1.getOutputStream());
+                    obj1.writeObject(this.B);
+                }else{
+                    ObjectOutputStream obj2 = new ObjectOutputStream(mySocket2.getOutputStream());
+                    obj2.writeObject(this.B);
+                }
                 
                 P = !P;
             }
