@@ -12,16 +12,19 @@ import myClasses.board;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import myClasses.inputDitels;
 
 /**
  *
  * @author user
  */
 public class play {
-    
+
     private board B;
     private boolean P = true;
     private BufferedReader b1 = null;
@@ -39,93 +42,119 @@ public class play {
 
         InputStreamReader input1 = new InputStreamReader(mySocket1.getInputStream());
         b1 = new BufferedReader(input1);
-        
+
         InputStreamReader input2 = new InputStreamReader(mySocket2.getInputStream());
         b2 = new BufferedReader(input2);
-        
-        
+
+        Object obj;
+        ObjectInputStream getInput1;
+        inputDitels getDitels;
+
         try {
             String direction;
             while (B.getAmountOfBlack() > 8 && B.getAmountOfWhite() > 8) {
-                
+
                 direction = null;
                 cellIndexes point = new cellIndexes();
-        
+
                 do {
-                    
+
                     do {
-                        
-                        System.out.println("put row:");
                         if (P) {
-                            String S = b1.readLine();
-                            if (S.equals("1") || S.equals("2") || S.equals("3")
-                                    || S.equals("4") || S.equals("5") || S.equals("6")
-                                    || S.equals("7") || S.equals("8") || S.equals("9")) {
-                                
-                                point.setR(Integer.parseInt(S));
-                            }
+                            getInput1 = new ObjectInputStream(mySocket1.getInputStream());
+                            obj = getInput1.readObject();
+                            getDitels = (inputDitels) obj;
+                            point.setR(getDitels.getRow());
+                            point.setC(getDitels.getColumn());
+                            direction = getDitels.getDir();
                         } else {
-                            String S = b2.readLine();
-                            if (S.equals("1") || S.equals("2") || S.equals("3")
-                                    || S.equals("4") || S.equals("5") || S.equals("6")
-                                    || S.equals("7") || S.equals("8") || S.equals("9")) {
-                                
-                                point.setR(Integer.parseInt(S));
-                            }
+                            ObjectInputStream getInput2 = new ObjectInputStream(mySocket2.getInputStream());
+                            obj = getInput2.readObject();
+                            getDitels = (inputDitels) obj;
+                            point.setR(getDitels.getRow());
+                            point.setC(getDitels.getColumn());
+                            direction = getDitels.getDir();
                         }
-                        
-                    } while (!(point.getR() > 0 && point.getR() < 10));
-                    
-                    do {
-                        
-                        System.out.println("put colomn:");
-                        if (P) {
-                            String S = b1.readLine();
-                            if (S.equals("2") || S.equals("3") || S.equals("4")
-                                    || S.equals("5") || S.equals("6") || S.equals("7")
-                                    || S.equals("8") || S.equals("9") || S.equals("10")
-                                    || S.equals("11") || S.equals("12") || S.equals("13")
-                                    || S.equals("14") || S.equals("15") || S.equals("16")
-                                    || S.equals("17") || S.equals("18")) {
-                                
-                                point.setC(Integer.parseInt(S));
-                            }
-                        } else {
-                            String S = b2.readLine();
-                            if (S.equals("2") || S.equals("3") || S.equals("4")
-                                    || S.equals("5") || S.equals("6") || S.equals("7")
-                                    || S.equals("8") || S.equals("9") || S.equals("10")
-                                    || S.equals("11") || S.equals("12") || S.equals("13")
-                                    || S.equals("14") || S.equals("15") || S.equals("16")
-                                    || S.equals("17") || S.equals("18")) {
-                                
-                                point.setC(Integer.parseInt(S));
-                            }
-                        }
-                        
-                    } while (!(point.getC() > 1 && point.getC() < 19));
-                    
+                    } while (!chackPoint(getDitels.getRow(), getDitels.getColumn()));
+
+                } while (!isPusible(point, direction));
+
+                /*do {
+                
+                do {
+                
+                System.out.println("put row:");
+                if (P) {
+                String S = b1.readLine();
+                if (S.equals("1") || S.equals("2") || S.equals("3")
+                || S.equals("4") || S.equals("5") || S.equals("6")
+                || S.equals("7") || S.equals("8") || S.equals("9")) {
+                
+                point.setR(Integer.parseInt(S));
+                }
+                } else {
+                String S = b2.readLine();
+                if (S.equals("1") || S.equals("2") || S.equals("3")
+                || S.equals("4") || S.equals("5") || S.equals("6")
+                || S.equals("7") || S.equals("8") || S.equals("9")) {
+                
+                point.setR(Integer.parseInt(S));
+                }
+                }
+                
+                } while (!(point.getR() > 0 && point.getR() < 10));
+                
+                do {
+                
+                System.out.println("put colomn:");
+                if (P) {
+                String S = b1.readLine();
+                if (S.equals("2") || S.equals("3") || S.equals("4")
+                || S.equals("5") || S.equals("6") || S.equals("7")
+                || S.equals("8") || S.equals("9") || S.equals("10")
+                || S.equals("11") || S.equals("12") || S.equals("13")
+                || S.equals("14") || S.equals("15") || S.equals("16")
+                || S.equals("17") || S.equals("18")) {
+                
+                point.setC(Integer.parseInt(S));
+                }
+                } else {
+                String S = b2.readLine();
+                if (S.equals("2") || S.equals("3") || S.equals("4")
+                || S.equals("5") || S.equals("6") || S.equals("7")
+                || S.equals("8") || S.equals("9") || S.equals("10")
+                || S.equals("11") || S.equals("12") || S.equals("13")
+                || S.equals("14") || S.equals("15") || S.equals("16")
+                || S.equals("17") || S.equals("18")) {
+                
+                point.setC(Integer.parseInt(S));
+                }
+                }
+                
+                } while (!(point.getC() > 1 && point.getC() < 19));
+                
                 } while (!chackPoint(point.getR(), point.getC()));
                 
                 System.out.println("-----");
                 
                 do {
-                    System.out.println("put dir:");
-                    if (P) {
-                        direction = b1.readLine();
-                    } else {
-                        direction = b2.readLine();
-                    }
-                    
-                } while (!isPusible(point, direction));
+                System.out.println("put dir:");
                 if (P) {
-                    ObjectOutputStream obj1 = new ObjectOutputStream(mySocket1.getOutputStream());
-                    obj1.writeObject(this.B);
-                }else{
-                    ObjectOutputStream obj2 = new ObjectOutputStream(mySocket2.getOutputStream());
-                    obj2.writeObject(this.B);
+                direction = b1.readLine();
+                } else {
+                direction = b2.readLine();
                 }
                 
+                } while (!isPusible(point, direction));*/
+                if(P){
+                ObjectOutputStream obj1 = new ObjectOutputStream(mySocket1.getOutputStream());
+                obj1.writeObject(this.B);
+                }else{
+
+                ObjectOutputStream obj2 = new ObjectOutputStream(mySocket2.getOutputStream());
+                obj2.writeObject(this.B);
+                }
+
                 P = !P;
             }
             if (B.getAmountOfWhite() == 8) {
@@ -138,6 +167,8 @@ public class play {
             System.out.println("abalon.play.playing() - 1");
         } catch (NumberFormatException numberFormatException) {
             System.out.println("abalon.play.playing() - 2");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(play.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -157,7 +188,6 @@ public class play {
             }
         }
     }
-
 
     private boolean isPusible(cellIndexes point, String direction) {
 
@@ -229,7 +259,7 @@ public class play {
         } else if (L != 0 && B.getGameBoard()[amount.getR()][amount.getC()].getType().equals(typeOfCell.notUsed)) {
             if (P) {
                 B.setAmountOfWhite(B.getAmountOfWhite() - 1);
-            }else{
+            } else {
                 B.setAmountOfBlack(B.getAmountOfBlack() - 1);
             }
             return true;
@@ -255,20 +285,21 @@ public class play {
         return point_1;
 
     }
+
     private void move(cellIndexes point, int i, int j) {
-        
-        for (int S = K + L;S != 0; S--) {
-            if(B.getGameBoard()[point.getR() + (S * i)][point.getC() + (S * j)].getType().equals(typeOfCell.notUsed)){
+
+        for (int S = K + L; S != 0; S--) {
+            if (B.getGameBoard()[point.getR() + (S * i)][point.getC() + (S * j)].getType().equals(typeOfCell.notUsed)) {
                 continue;
-            }else{
-        typeOfCell keep = B.getGameBoard()[point.getR() + (S * i) - i][point.getC() + (S * j) - j].getType();
-            B.getGameBoard()[point.getR() + (S * i)][point.getC() + (S * j)].setType(keep);
+            } else {
+                typeOfCell keep = B.getGameBoard()[point.getR() + (S * i) - i][point.getC() + (S * j) - j].getType();
+                B.getGameBoard()[point.getR() + (S * i)][point.getC() + (S * j)].setType(keep);
             }
         }
         B.getGameBoard()[point.getR()][point.getC()].setType(typeOfCell.empty);
-        
+
         myClasses.print P = new print(B);
-        
+
     }
 
 }

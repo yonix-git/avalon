@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import myClasses.seri;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
