@@ -5,6 +5,7 @@
  */
 package abalon;
 
+import Net.listiner;
 import myClasses.print;
 import myClasses.board;
 import java.io.BufferedReader;
@@ -19,7 +20,7 @@ import java.net.Socket;
 public class thread extends Thread{
     
     private  Socket mySocket1, mySocket2;
-    private play pl = new play();
+    private play pl; 
     print p = new print();
     board B = new board();
     /*private BufferedReader b1 = null;
@@ -30,13 +31,15 @@ public class thread extends Thread{
         
         this.mySocket1 = mySocket1;
         this.mySocket2 = mySocket2;
+        listiner lis1 = new listiner(mySocket1);
+        listiner lis2 = new listiner(mySocket2);
         
         /*InputStreamReader input1 = new InputStreamReader(mySocket1.getInputStream());
         b1 = new BufferedReader(input1);
         InputStreamReader input2 = new InputStreamReader(mySocket2.getInputStream());
         b2 = new BufferedReader(input2);*/
         
-        
+        pl = new play(lis1, lis2);
         p.printBoard(B);
         pl.playing( mySocket1, mySocket2);
         

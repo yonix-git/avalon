@@ -5,6 +5,7 @@
  */
 package abalon;
 
+import Net.listiner;
 import myClasses.print;
 import myClasses.cellIndexes;
 import myClasses.typeOfCell;
@@ -29,26 +30,47 @@ public class play {
     private boolean P = true;
     private BufferedReader b1 = null;
     private BufferedReader b2 = null;
+    private listiner lis1, lis2;
 
-    public play() {
+    public play(listiner lis1, listiner lis2) {
         this.B = new board();
+        this.lis1 = lis1;
+        this.lis2 = lis2;
+        
+        this.lis1.start();
+        this.lis2.start();
     }
+    
 
     public play(board B) {
         this.B = B;
     }
+    private Object waitAndGet(listiner lis){
+    
+        Object toReturn = null;
+        lis.setObjectNull();
+        while(toReturn == null){
+            try {
+                Thread.sleep(25);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(play.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            toReturn = lis.getTmpObject();
+        }
+        return toReturn;
+    }
 
     public void playing(Socket mySocket1, Socket mySocket2) throws IOException {
 
-        InputStreamReader input1 = new InputStreamReader(mySocket1.getInputStream());
+        /*InputStreamReader input1 = new InputStreamReader(mySocket1.getInputStream());
         b1 = new BufferedReader(input1);
-
+        
         InputStreamReader input2 = new InputStreamReader(mySocket2.getInputStream());
-        b2 = new BufferedReader(input2);
+        b2 = new BufferedReader(input2);*/
 
         Object obj;
-        ObjectInputStream getInput1;
         inputDitels getDitels;
+        
 
         try {
             String direction;
@@ -61,20 +83,16 @@ public class play {
 
                     do {
                         if (P) {
-                            getInput1 = new ObjectInputStream(mySocket1.getInputStream());
-                            obj = getInput1.readObject();
-                            getDitels = (inputDitels) obj;
-                            point.setR(getDitels.getRow());
-                            point.setC(getDitels.getColumn());
-                            direction = getDitels.getDir();
+                          //  getInput1 = new ObjectInputStream(mySocket1.getInputStream());
+                          //  obj = getInput1.readObject();
+                            obj = waitAndGet(lis1);
                         } else {
-                            ObjectInputStream getInput2 = new ObjectInputStream(mySocket2.getInputStream());
-                            obj = getInput2.readObject();
+                            obj = waitAndGet(lis2);
+                        }
                             getDitels = (inputDitels) obj;
                             point.setR(getDitels.getRow());
                             point.setC(getDitels.getColumn());
                             direction = getDitels.getDir();
-                        }
                     } while (!chackPoint(getDitels.getRow(), getDitels.getColumn()));
 
                 } while (!isPusible(point, direction));
@@ -167,8 +185,6 @@ public class play {
             System.out.println("abalon.play.playing() - 1");
         } catch (NumberFormatException numberFormatException) {
             System.out.println("abalon.play.playing() - 2");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(play.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
