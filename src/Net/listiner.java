@@ -29,8 +29,8 @@ public class listiner extends Thread{
     public void run() {
         Object tmp;
         try {
-            in = new ObjectInputStream(net.getInputStream());
             while(true){
+            in = new ObjectInputStream(net.getInputStream());
                 Thread.sleep(25);
                 tmp = in.readObject();
                 tmpObject = tmp;

@@ -32,6 +32,8 @@ try {
                     + "integratedSecurity=true";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection conn = DriverManager.getConnection(DB_URL);
+            
+            System.out.println("yaaaaa");
            
             // declare of statement and resultSet
             Statement statement;
