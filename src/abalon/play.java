@@ -98,14 +98,12 @@ public class play {
 
                 } while (!isPusible(point, direction));
 
-                if(P){
                     obj1 = new ObjectOutputStream(mySocket1.getOutputStream());
                     obj1.writeObject(this.B);
-                }else{
 
                     obj2 = new ObjectOutputStream(mySocket2.getOutputStream());
                     obj2.writeObject(this.B);
-                }
+                    
                 P = !P;
             }
             if (B.getAmountOfWhite() == 8) {
