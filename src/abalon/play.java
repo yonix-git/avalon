@@ -47,7 +47,7 @@ public class play {
     /*
     this function get a listiner and wait to get a object from the thread 
     and when it's done return this object
-    */
+     */
     private Object waitAndGet(listiner lis) {
 
         Object toReturn = null;
@@ -67,7 +67,7 @@ public class play {
     this function get the sockets and make the game betwin the players
     the 'while' runing until one of the players win
     the function make a move and send the board to the clients
-    */
+     */
     public void playing(Socket mySocket1, Socket mySocket2) throws IOException {
 
         Object obj;
@@ -81,6 +81,12 @@ public class play {
                 direction = null;
                 cellIndexes point = new cellIndexes();
 
+                obj1 = new ObjectOutputStream(mySocket1.getOutputStream());
+                obj1.writeObject(this.B);
+
+                obj2 = new ObjectOutputStream(mySocket2.getOutputStream());
+                obj2.writeObject(this.B);
+
                 do {
 
                     do {
@@ -90,7 +96,7 @@ public class play {
                             obj = waitAndGet(lis2);
                         }
                         getDitels = (inputDitels) obj;
-                        
+
                         point.setR(getDitels.getRow());
                         point.setC(getDitels.getColumn());
                         direction = getDitels.getDir();
@@ -98,12 +104,6 @@ public class play {
 
                 } while (!isPusible(point, direction));
 
-                    obj1 = new ObjectOutputStream(mySocket1.getOutputStream());
-                    obj1.writeObject(this.B);
-
-                    obj2 = new ObjectOutputStream(mySocket2.getOutputStream());
-                    obj2.writeObject(this.B);
-                    
                 P = !P;
             }
             if (B.getAmountOfWhite() == 8) {
@@ -122,7 +122,7 @@ public class play {
     /*
     this function chack if the plyer picked his part or not
     if he picked his part return true if not return false
-    */
+     */
     private boolean chackPoint(int R, int C) {
 
         if (P) {
@@ -143,7 +143,7 @@ public class play {
     /*
     this function chack if the move he want is pusible or not (after he pick a direction)
     if it's pusible return true if not return false
-    */
+     */
     private boolean isPusible(cellIndexes point, String direction) {
 
         cellIndexes amount = new cellIndexes();
@@ -208,7 +208,7 @@ public class play {
     /*
     this function chack if the move he wants can be
     (if the parts you move more then the moved)
-    */
+     */
     private boolean canMove(cellIndexes amount, cellIndexes point) {
 
         if (K <= L) {
@@ -231,7 +231,7 @@ public class play {
     /*
     this function counting the parts of the playing now and 
     how much after them and put it on K and L
-    */
+     */
     private cellIndexes chackWithDirection(cellIndexes point, int i, int j) {
 
         if (P) {
@@ -251,7 +251,7 @@ public class play {
 
     /*
     this function move the parts on the matrix and keep the matrix in B
-    */
+     */
     private void move(cellIndexes point, int i, int j) {
 
         for (int S = K + L; S != 0; S--) {
