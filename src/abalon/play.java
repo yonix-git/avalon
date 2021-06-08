@@ -26,8 +26,8 @@ public class play {
 
     private board B;
     private boolean P = true;
-    private BufferedReader b1 = null;
-    private BufferedReader b2 = null;
+    //private BufferedReader b1 = null;
+    //private BufferedReader b2 = null;
     private listiner lis1, lis2;
 
     //constructor

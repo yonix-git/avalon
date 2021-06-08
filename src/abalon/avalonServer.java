@@ -15,7 +15,6 @@ it's accept to two clients and open thread for tham
  */
 public class avalonServer {
 
-    private board B = new board();
 
     public void server() throws IOException {
 
@@ -24,15 +23,15 @@ public class avalonServer {
         try {
             myServer = new ServerSocket(5845);
         } catch (Exception e) {
-            System.out.println("go fuck yourself");
+            System.err.println("can't open!");
         }
 
         Socket mySocket1, mySocket2;
         while (true) {
             mySocket1 = myServer.accept();
-            System.out.println("n1 is ready");
+            System.out.println("number 1 is ready;");
             mySocket2 = myServer.accept();
-            System.out.println("n2 is ready");
+            System.out.println("number 2 is ready;");
             
             thread T = new thread(mySocket1, mySocket2);
         }
