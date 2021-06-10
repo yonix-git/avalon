@@ -25,8 +25,6 @@ public class play {
 
     private board B;
     private boolean P = true;
-    //private BufferedReader b1 = null;
-    //private BufferedReader b2 = null;
     private listiner lis1, lis2;
 
     //constructor
@@ -105,13 +103,13 @@ public class play {
 
                 P = !P;
             }
-            
-                obj1 = new ObjectOutputStream(mySocket1.getOutputStream());
-                obj1.writeObject(this.B);
 
-                obj2 = new ObjectOutputStream(mySocket2.getOutputStream());
-                obj2.writeObject(this.B);
-                
+            obj1 = new ObjectOutputStream(mySocket1.getOutputStream());
+            obj1.writeObject(this.B);
+
+            obj2 = new ObjectOutputStream(mySocket2.getOutputStream());
+            obj2.writeObject(this.B);
+
             if (B.getAmountOfWhite() == 8) {
                 System.out.println("black wins !!!!!!!!!!!!!!");
             }
