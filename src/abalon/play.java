@@ -6,6 +6,7 @@
 package abalon;
 
 import Net.listiner;
+import java.awt.Toolkit;
 import myClasses.print;
 import myClasses.cellIndexes;
 import myClasses.typeOfCell;
@@ -133,12 +134,14 @@ public class play {
             if (B.getGameBoard()[R][C].getType().equals(typeOfCell.black)) {
                 return true;
             } else {
+                Toolkit.getDefaultToolkit().beep();
                 return false;
             }
         } else {
             if (B.getGameBoard()[R][C].getType().equals(typeOfCell.white)) {
                 return true;
             } else {
+                Toolkit.getDefaultToolkit().beep();
                 return false;
             }
         }
