@@ -6,6 +6,7 @@
 package abalon;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  *
@@ -16,9 +17,11 @@ public class Abalone {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
         
-        sqlData sql = new sqlData();
+        //sqlData sql = new sqlData();
+        //boolean B = sql.chackNameAndPass("yonix.il", "yonix5678");
+        //System.out.println(B);
         avalonServer a = new avalonServer();
         a.server();
         //sqlData b = new sqlData();

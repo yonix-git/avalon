@@ -1,7 +1,9 @@
 package abalon;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,6 +20,7 @@ import java.util.logging.Logger;
  * @author user
  */
 public class sqlData {
+    Connection conn;
 
     public sqlData() {
         try {
@@ -28,7 +31,7 @@ public class sqlData {
                     + "databaseName=avalonData;"
                     + "integratedSecurity=true";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection conn = DriverManager.getConnection(DB_URL);
+            conn = DriverManager.getConnection(DB_URL);
 
             System.out.println("yaaaaa");
 
@@ -56,7 +59,6 @@ public class sqlData {
             // close the resorces
             rs.close();
             statement.close();
-            conn.close();
 
 //Create Statment
 //Execute
@@ -66,6 +68,42 @@ public class sqlData {
         } catch (ClassNotFoundException ex) {
             System.out.println("cant connect!_2");
             Logger.getLogger(sqlData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public boolean chackNameAndPass(String name, String password) throws SQLException{
+        
+        String query = "declare @res int exec @res = getNameAndPassword ?, ?"
+                + " select @res as res";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, name);
+        ps.setString(2, password);
+        ResultSet rs = ps.executeQuery();
+        
+        
+        if (rs.next() && rs.getInt("res") == 1) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    public boolean newPlayer(String name, String nickName, String password, String email) throws SQLException{
+        String query = "declare @res int exec @res = setNewPlayer ?, ?, ?, ?"
+                + " select @res as res";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, name);
+        ps.setString(2, nickName);
+        ps.setString(3, password);
+        ps.setString(4, email);
+        ResultSet rs = ps.executeQuery();
+        
+        
+        if (rs.next() && rs.getInt("res") == 1) {
+            System.out.println(rs.getString("res"));
+            return true;
+        } else {
+            return false;
         }
     }
 }
