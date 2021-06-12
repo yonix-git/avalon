@@ -21,7 +21,7 @@ public class avalonServer {
     ObjectOutputStream out1, out2;
     Object obj1, obj2, obj3, obj4;
     boolean connectOrNot = false;
-    boolean conOrLog;
+    boolean conOrSing;
 
     public void server() throws IOException, ClassNotFoundException {
 
@@ -38,9 +38,9 @@ public class avalonServer {
             
             mySocket1 = myServer.accept();
             in1 = new ObjectInputStream(mySocket1.getInputStream());
-            conOrLog = (boolean)in1.readObject();
+            conOrSing = (boolean)in1.readObject();
             do {
-                if (conOrLog) {
+                if (conOrSing) {
                     in1 = new ObjectInputStream(mySocket1.getInputStream());
                     obj1 = in1.readObject();
                     in1 = new ObjectInputStream(mySocket1.getInputStream());
@@ -58,6 +58,8 @@ public class avalonServer {
                     in1 = new ObjectInputStream(mySocket1.getInputStream());
                     obj4 = in1.readObject();
                     connectOrNot = con.createNew(obj1, obj2, obj3, obj4);
+                    out1 = new ObjectOutputStream(mySocket1.getOutputStream());
+                    out1.writeObject((Object) connectOrNot);
                 }
             } while (!connectOrNot);
             

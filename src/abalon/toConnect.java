@@ -47,6 +47,9 @@ public class toConnect extends Thread {
         boolean B = false;
         try {
             B = sql.newPlayer((String)obj1, (String)obj2, (String)obj3, (String)obj4);
+            if (B) {
+            System.out.println("hooooo 2");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(toConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
