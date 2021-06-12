@@ -100,8 +100,6 @@ public class sqlData {
         
         
         if (rs.next() && rs.getInt("res") == 1) {
-            System.out.println(rs.getString("res"));
-            System.out.println("yaaaaa");
             return true;
         } else {
             return false;

@@ -19,18 +19,10 @@ public class Abalone {
      */
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
         
-        //sqlData sql = new sqlData();
-        //boolean B = sql.chackNameAndPass("yonix.il", "yonix5678");
-        //System.out.println(B);
+       
         avalonServer a = new avalonServer();
         a.server();
-        //sqlData b = new sqlData();
         
-        /* board B = new board();
-        print P = new print();
-        P.printBoard(B);
-        play PL = new play();
-        PL.playing();*/
     }
 
 }

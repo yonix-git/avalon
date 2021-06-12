@@ -68,13 +68,33 @@ public class avalonServer {
             System.out.println("number 1 is ready;");
             
             mySocket2 = myServer.accept();
+            in2 = new ObjectInputStream(mySocket2.getInputStream());
+            conOrSing = (boolean)in2.readObject();
             
             do{
-            in2 = new ObjectInputStream(mySocket2.getInputStream());
-            obj1 = in2.readObject();
-            in2 = new ObjectInputStream(mySocket2.getInputStream());
-            obj2 = in2.readObject();
-            con.connect(obj1, obj2);
+            if (conOrSing) {
+                    in2 = new ObjectInputStream(mySocket2.getInputStream());
+                    obj1 = in2.readObject();
+                    in2 = new ObjectInputStream(mySocket2.getInputStream());
+                    obj2 = in2.readObject();
+                    connectOrNot = con.connect(obj1, obj2);
+                    System.out.println("yyyyyyyyyyyyy");
+                    System.out.println(connectOrNot);
+                    out2 = new ObjectOutputStream(mySocket2.getOutputStream());
+                    out2.writeObject((Object) connectOrNot);
+                } else {
+                    in2 = new ObjectInputStream(mySocket2.getInputStream());
+                    obj1 = in2.readObject();
+                    in2 = new ObjectInputStream(mySocket2.getInputStream());
+                    obj2 = in2.readObject();
+                    in2 = new ObjectInputStream(mySocket2.getInputStream());
+                    obj3 = in2.readObject();
+                    in2 = new ObjectInputStream(mySocket2.getInputStream());
+                    obj4 = in2.readObject();
+                    connectOrNot = con.createNew(obj1, obj2, obj3, obj4);
+                    out2 = new ObjectOutputStream(mySocket2.getOutputStream());
+                    out2.writeObject((Object) connectOrNot);
+                }
             }while(!connectOrNot);
             
             System.out.println("number 2 is ready;");
