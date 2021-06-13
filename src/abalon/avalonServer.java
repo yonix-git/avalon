@@ -23,7 +23,7 @@ public class avalonServer {
     boolean connectOrNot = false;
     boolean conOrSing;
 
-    public void server() throws IOException, ClassNotFoundException {
+    public avalonServer() throws IOException, ClassNotFoundException {
 
         ServerSocket myServer = null;
 
@@ -103,6 +103,4 @@ public class avalonServer {
         }
     }
 
-    public avalonServer() {
-    }
 }

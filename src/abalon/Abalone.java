@@ -20,8 +20,7 @@ public class Abalone {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
         
        
-        avalonServer a = new avalonServer();
-        a.server();
+        new avalonServer();
         
     }
 
