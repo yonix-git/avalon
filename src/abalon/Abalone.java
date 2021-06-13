@@ -19,7 +19,6 @@ public class Abalone {
      */
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
         
-       
         new avalonServer();
         
     }
