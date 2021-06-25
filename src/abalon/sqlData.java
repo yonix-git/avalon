@@ -98,11 +98,27 @@ public class sqlData {
         ps.setString(4, email);
         ResultSet rs = ps.executeQuery();
         
-        
         if (rs.next() && rs.getInt("res") == 1) {
             return true;
         } else {
             return false;
         }
+    }
+    public int setNewGame(String name1, String name2) throws SQLException{
+        String query = "declare @res int exec @res = setNewGame ?, ?"
+                + " select @res as res";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, name1);
+        ps.setString(2, name2);
+        ResultSet rs = ps.executeQuery();
+        
+        rs.next();
+        return rs.getInt("res");
+    }
+    public int getGameID(String name){
+        String query = "declare @res int exec @res = setNewPlayer ?, ?, ?, ?"
+                + " select @res as res";
+        return 0;
+        
     }
 }

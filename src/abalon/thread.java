@@ -30,7 +30,6 @@ public class thread extends Thread{
         listiner lis2 = new listiner(mySocket2);
        
         pl = new play(lis1, lis2);
-        p.printBoard(B);
         pl.playing( mySocket1, mySocket2);
         
     }

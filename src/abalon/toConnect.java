@@ -16,8 +16,9 @@ import java.util.logging.Logger;
  * @author user
  */
 public class toConnect extends Thread {
-    public toConnect(){
-        
+
+    public toConnect() {
+
     }
 
     sqlData sql = new sqlData();
@@ -43,14 +44,30 @@ public class toConnect extends Thread {
     }
 
     public boolean createNew(Object obj1, Object obj2, Object obj3, Object obj4) {
-        
+
         boolean B = false;
         try {
-            B = sql.newPlayer((String)obj1, (String)obj2, (String)obj3, (String)obj4);
+            B = sql.newPlayer((String) obj1, (String) obj2, (String) obj3, (String) obj4);
         } catch (SQLException ex) {
             Logger.getLogger(toConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
         return B;
+
+    }
+
+    public int newGame(Object name1, Object name2) {
+        int id = 0;
+        try {
+            id = sql.setNewGame((String) name1, (String) name2);
+        } catch (SQLException ex) {
+            Logger.getLogger(toConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
+
+    public int getGameID(Object name) {
+        int id;
+        return 0;
 
     }
 

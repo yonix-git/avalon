@@ -48,6 +48,12 @@ public class avalonServer {
                     connectOrNot = con.connect(obj1, obj2);
                     out1 = new ObjectOutputStream(mySocket1.getOutputStream());
                     out1.writeObject((Object) connectOrNot);
+                    
+                    /*if (connectOrNot) {
+                    out1 = new ObjectOutputStream(mySocket1.getOutputStream());
+                    obj2 = con.getGameID(obj1);
+                    out1.writeObject(obj2);
+                    }*/
                 } else {
                     in1 = new ObjectInputStream(mySocket1.getInputStream());
                     obj1 = in1.readObject();
@@ -65,7 +71,6 @@ public class avalonServer {
             
             
             connectOrNot = false;
-            System.out.println("number 1 is ready;");
             
             mySocket2 = myServer.accept();
             in2 = new ObjectInputStream(mySocket2.getInputStream());
@@ -78,7 +83,6 @@ public class avalonServer {
                     in2 = new ObjectInputStream(mySocket2.getInputStream());
                     obj2 = in2.readObject();
                     connectOrNot = con.connect(obj1, obj2);
-                    System.out.println("yyyyyyyyyyyyy");
                     System.out.println(connectOrNot);
                     out2 = new ObjectOutputStream(mySocket2.getOutputStream());
                     out2.writeObject((Object) connectOrNot);
@@ -97,7 +101,6 @@ public class avalonServer {
                 }
             }while(!connectOrNot);
             
-            System.out.println("number 2 is ready;");
             
             thread T = new thread(mySocket1, mySocket2);
         }
