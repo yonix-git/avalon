@@ -112,6 +112,12 @@ public class avalonServer {
             }while(!connectOrNot);
             
             int i = con.newGame(name1, name2);
+            
+            /*ObjectOutputStream obo = new ObjectOutputStream(mySocket1.getOutputStream());
+            obo.writeObject((Object)i);
+            obo = new ObjectOutputStream(mySocket2.getOutputStream());
+            obo.writeObject((Object)i);*/
+            
             System.out.println("GAME ID:" + i);
             thread T = new thread(mySocket1, mySocket2);
         }
