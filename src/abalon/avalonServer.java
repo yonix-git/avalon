@@ -19,7 +19,7 @@ public class avalonServer {
     toConnect con = new toConnect();
     ObjectInputStream in1, in2;
     ObjectOutputStream out1, out2;
-    Object obj1, obj2, obj3, obj4;
+    Object obj1, obj2, obj3, obj4, name1, name2;
     boolean connectOrNot = false;
     boolean conOrSing;
 
@@ -49,11 +49,9 @@ public class avalonServer {
                     out1 = new ObjectOutputStream(mySocket1.getOutputStream());
                     out1.writeObject((Object) connectOrNot);
                     
-                    /*if (connectOrNot) {
-                    out1 = new ObjectOutputStream(mySocket1.getOutputStream());
-                    obj2 = con.getGameID(obj1);
-                    out1.writeObject(obj2);
-                    }*/
+                    if (connectOrNot) {
+                    name1 = obj1;
+                    }
                 } else {
                     in1 = new ObjectInputStream(mySocket1.getInputStream());
                     obj1 = in1.readObject();
@@ -66,6 +64,10 @@ public class avalonServer {
                     connectOrNot = con.createNew(obj1, obj2, obj3, obj4);
                     out1 = new ObjectOutputStream(mySocket1.getOutputStream());
                     out1.writeObject((Object) connectOrNot);
+                    
+                    if (connectOrNot) {
+                    name1 = obj1;
+                    }
                 }
             } while (!connectOrNot);
             
@@ -86,6 +88,10 @@ public class avalonServer {
                     System.out.println(connectOrNot);
                     out2 = new ObjectOutputStream(mySocket2.getOutputStream());
                     out2.writeObject((Object) connectOrNot);
+                    
+                    if (connectOrNot) {
+                    name2 = obj1;
+                    }
                 } else {
                     in2 = new ObjectInputStream(mySocket2.getInputStream());
                     obj1 = in2.readObject();
@@ -98,10 +104,15 @@ public class avalonServer {
                     connectOrNot = con.createNew(obj1, obj2, obj3, obj4);
                     out2 = new ObjectOutputStream(mySocket2.getOutputStream());
                     out2.writeObject((Object) connectOrNot);
+                    
+                    if (connectOrNot) {
+                    name2 = obj1;
+                    }
                 }
             }while(!connectOrNot);
             
-            
+            int i = con.newGame(name1, name2);
+            System.out.println("GAME ID:" + i);
             thread T = new thread(mySocket1, mySocket2);
         }
     }

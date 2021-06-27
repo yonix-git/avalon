@@ -104,6 +104,7 @@ public class sqlData {
             return false;
         }
     }
+    
     public int setNewGame(String name1, String name2) throws SQLException{
         String query = "declare @res int exec @res = setNewGame ?, ?"
                 + " select @res as res";
@@ -115,10 +116,16 @@ public class sqlData {
         rs.next();
         return rs.getInt("res");
     }
-    public int getGameID(String name){
-        String query = "declare @res int exec @res = setNewPlayer ?, ?, ?, ?"
-                + " select @res as res";
-        return 0;
-        
-    }
+    
+    /*public int getGameID(String name) throws SQLException{
+    String query = "declare @res int exec @res = getGameID ?"
+    + " select @res as res";
+    PreparedStatement ps = conn.prepareStatement(query);
+    ps.setString(1, name);
+    ResultSet rs = ps.executeQuery();
+    
+    rs.next();
+    return rs.getInt("res");
+    
+    }*/
 }

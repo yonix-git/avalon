@@ -65,11 +65,16 @@ public class toConnect extends Thread {
         return id;
     }
 
-    public int getGameID(Object name) {
-        int id;
-        return 0;
-
+    /*public int getGameID(Object name) {
+    int id = 0;
+    try {
+    id = sql.getGameID((String) name);
+    } catch (SQLException ex) {
+    Logger.getLogger(toConnect.class.getName()).log(Level.SEVERE, null, ex);
     }
+    return id;
+    
+    }*/
 
     private Object waitAndGet(listiner lis) {
 
