@@ -29,8 +29,6 @@ public class thread extends Thread{
         this.mySocket1 = mySocket1;
         this.mySocket2 = mySocket2;
        
-        
-        
     }
 
     @Override

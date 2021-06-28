@@ -17,11 +17,13 @@ it's accept to two clients and open thread for tham
 public class avalonServer {
 
     toConnect con = new toConnect();
+    verify veri;
     ObjectInputStream in1, in2;
     ObjectOutputStream out1, out2;
     Object obj1, obj2, obj3, obj4, name1, name2;
     boolean connectOrNot = false;
-    boolean conOrSing;
+    Socket mySocket1, mySocket2;
+    boolean conOrSing, B = true;
 
     public avalonServer() throws IOException, ClassNotFoundException {
 
@@ -33,43 +35,44 @@ public class avalonServer {
             System.err.println("can't open!");
         }
 
-        Socket mySocket1, mySocket2;
         while (true) {
             System.out.println("ooooooooooooooooo\n"
                     + "jjjjjjjjjjjjjjjjjjjjjjjjjj\nllllllllllllll");
             mySocket1 = myServer.accept();
-            in1 = new ObjectInputStream(mySocket1.getInputStream());
+            veri = new verify(mySocket1, this);
+            veri.start();
+            /*in1 = new ObjectInputStream(mySocket1.getInputStream());
             conOrSing = (boolean)in1.readObject();
             do {
-                if (conOrSing) {
-                    in1 = new ObjectInputStream(mySocket1.getInputStream());
-                    obj1 = in1.readObject();
-                    in1 = new ObjectInputStream(mySocket1.getInputStream());
-                    obj2 = in1.readObject();
-                    connectOrNot = con.connect(obj1, obj2);
-                    out1 = new ObjectOutputStream(mySocket1.getOutputStream());
-                    out1.writeObject((Object) connectOrNot);
-                    
-                    if (connectOrNot) {
-                    name1 = obj1;
-                    }
-                } else {
-                    in1 = new ObjectInputStream(mySocket1.getInputStream());
-                    obj1 = in1.readObject();
-                    in1 = new ObjectInputStream(mySocket1.getInputStream());
-                    obj2 = in1.readObject();
-                    in1 = new ObjectInputStream(mySocket1.getInputStream());
-                    obj3 = in1.readObject();
-                    in1 = new ObjectInputStream(mySocket1.getInputStream());
-                    obj4 = in1.readObject();
-                    connectOrNot = con.createNew(obj1, obj2, obj3, obj4);
-                    out1 = new ObjectOutputStream(mySocket1.getOutputStream());
-                    out1.writeObject((Object) connectOrNot);
-                    
-                    if (connectOrNot) {
-                    name1 = obj1;
-                    }
-                }
+            if (conOrSing) {
+            in1 = new ObjectInputStream(mySocket1.getInputStream());
+            obj1 = in1.readObject();
+            in1 = new ObjectInputStream(mySocket1.getInputStream());
+            obj2 = in1.readObject();
+            connectOrNot = con.connect(obj1, obj2);
+            out1 = new ObjectOutputStream(mySocket1.getOutputStream());
+            out1.writeObject((Object) connectOrNot);
+            
+            if (connectOrNot) {
+            name1 = obj1;
+            }
+            } else {
+            in1 = new ObjectInputStream(mySocket1.getInputStream());
+            obj1 = in1.readObject();
+            in1 = new ObjectInputStream(mySocket1.getInputStream());
+            obj2 = in1.readObject();
+            in1 = new ObjectInputStream(mySocket1.getInputStream());
+            obj3 = in1.readObject();
+            in1 = new ObjectInputStream(mySocket1.getInputStream());
+            obj4 = in1.readObject();
+            connectOrNot = con.createNew(obj1, obj2, obj3, obj4);
+            out1 = new ObjectOutputStream(mySocket1.getOutputStream());
+            out1.writeObject((Object) connectOrNot);
+            
+            if (connectOrNot) {
+            name1 = obj1;
+            }
+            }
             } while (!connectOrNot);
             
             
@@ -81,48 +84,59 @@ public class avalonServer {
             
             do{
             if (conOrSing) {
-                    in2 = new ObjectInputStream(mySocket2.getInputStream());
-                    obj1 = in2.readObject();
-                    in2 = new ObjectInputStream(mySocket2.getInputStream());
-                    obj2 = in2.readObject();
-                    connectOrNot = con.connect(obj1, obj2);
-                    System.out.println(connectOrNot);
-                    out2 = new ObjectOutputStream(mySocket2.getOutputStream());
-                    out2.writeObject((Object) connectOrNot);
-                    
-                    if (connectOrNot) {
-                    name2 = obj1;
-                    }
-                } else {
-                    in2 = new ObjectInputStream(mySocket2.getInputStream());
-                    obj1 = in2.readObject();
-                    in2 = new ObjectInputStream(mySocket2.getInputStream());
-                    obj2 = in2.readObject();
-                    in2 = new ObjectInputStream(mySocket2.getInputStream());
-                    obj3 = in2.readObject();
-                    in2 = new ObjectInputStream(mySocket2.getInputStream());
-                    obj4 = in2.readObject();
-                    connectOrNot = con.createNew(obj1, obj2, obj3, obj4);
-                    out2 = new ObjectOutputStream(mySocket2.getOutputStream());
-                    out2.writeObject((Object) connectOrNot);
-                    
-                    if (connectOrNot) {
-                    name2 = obj1;
-                    }
-                }
-            }while(!connectOrNot);
+            in2 = new ObjectInputStream(mySocket2.getInputStream());
+            obj1 = in2.readObject();
+            in2 = new ObjectInputStream(mySocket2.getInputStream());
+            obj2 = in2.readObject();
+            connectOrNot = con.connect(obj1, obj2);
+            System.out.println(connectOrNot);
+            out2 = new ObjectOutputStream(mySocket2.getOutputStream());
+            out2.writeObject((Object) connectOrNot);
             
-            int i = con.newGame(name1, name2);
+            if (connectOrNot) {
+            name2 = obj1;
+            }
+            } else {
+            in2 = new ObjectInputStream(mySocket2.getInputStream());
+            obj1 = in2.readObject();
+            in2 = new ObjectInputStream(mySocket2.getInputStream());
+            obj2 = in2.readObject();
+            in2 = new ObjectInputStream(mySocket2.getInputStream());
+            obj3 = in2.readObject();
+            in2 = new ObjectInputStream(mySocket2.getInputStream());
+            obj4 = in2.readObject();
+            connectOrNot = con.createNew(obj1, obj2, obj3, obj4);
+            out2 = new ObjectOutputStream(mySocket2.getOutputStream());
+            out2.writeObject((Object) connectOrNot);
+            
+            if (connectOrNot) {
+            name2 = obj1;
+            }
+            }
+            }while(!connectOrNot);*/
+            
+            //int i = con.newGame(name1, name2);
             
             /*ObjectOutputStream obo = new ObjectOutputStream(mySocket1.getOutputStream());
             obo.writeObject((Object)i);
             obo = new ObjectOutputStream(mySocket2.getOutputStream());
             obo.writeObject((Object)i);*/
             
-            System.out.println("GAME ID:" + i);
+            //System.out.println("GAME ID:" + i);
+            /*thread T = new thread(mySocket1, mySocket2);
+            T.start();*/
+        }
+    }
+    
+    public void srartGame(Socket S) throws IOException{
+        if (B) {
+            this.mySocket1 = S;
+        }else{
+            this.mySocket2 = S;
             thread T = new thread(mySocket1, mySocket2);
             T.start();
         }
+        B = !B;
     }
 
 }
