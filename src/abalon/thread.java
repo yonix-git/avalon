@@ -10,6 +10,8 @@ import myClasses.print;
 import myClasses.board;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
 this class get two sockets and start a game for them
@@ -26,12 +28,23 @@ public class thread extends Thread{
         
         this.mySocket1 = mySocket1;
         this.mySocket2 = mySocket2;
+       
+        
+        
+    }
+
+    @Override
+    public void run() {
+        
         listiner lis1 = new listiner(mySocket1);
         listiner lis2 = new listiner(mySocket2);
-       
-        pl = new play(lis1, lis2);
-        pl.playing( mySocket1, mySocket2);
         
+        pl = new play(lis1, lis2);
+        try {
+            pl.playing( mySocket1, mySocket2);
+        } catch (IOException ex) {
+            Logger.getLogger(thread.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

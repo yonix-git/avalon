@@ -35,7 +35,8 @@ public class avalonServer {
 
         Socket mySocket1, mySocket2;
         while (true) {
-            
+            System.out.println("ooooooooooooooooo\n"
+                    + "jjjjjjjjjjjjjjjjjjjjjjjjjj\nllllllllllllll");
             mySocket1 = myServer.accept();
             in1 = new ObjectInputStream(mySocket1.getInputStream());
             conOrSing = (boolean)in1.readObject();
@@ -120,6 +121,7 @@ public class avalonServer {
             
             System.out.println("GAME ID:" + i);
             thread T = new thread(mySocket1, mySocket2);
+            T.start();
         }
     }
 
