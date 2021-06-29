@@ -36,12 +36,28 @@ public class avalonServer {
         }
 
         while (true) {
-            System.out.println("ooooooooooooooooo\n"
-                    + "jjjjjjjjjjjjjjjjjjjjjjjjjj\nllllllllllllll");
+            
             mySocket1 = myServer.accept();
             veri = new verify(mySocket1, this);
             veri.start();
-            /*in1 = new ObjectInputStream(mySocket1.getInputStream());
+            
+        }
+        
+    }
+    
+    public void srartGame(Socket S) throws IOException{
+        if (B) {
+            this.mySocket1 = S;
+        }else{
+            this.mySocket2 = S;
+            thread T = new thread(mySocket1, mySocket2);
+            T.start();
+        }
+        B = !B;
+    }
+
+}
+/*in1 = new ObjectInputStream(mySocket1.getInputStream());
             conOrSing = (boolean)in1.readObject();
             do {
             if (conOrSing) {
@@ -125,18 +141,3 @@ public class avalonServer {
             //System.out.println("GAME ID:" + i);
             /*thread T = new thread(mySocket1, mySocket2);
             T.start();*/
-        }
-    }
-    
-    public void srartGame(Socket S) throws IOException{
-        if (B) {
-            this.mySocket1 = S;
-        }else{
-            this.mySocket2 = S;
-            thread T = new thread(mySocket1, mySocket2);
-            T.start();
-        }
-        B = !B;
-    }
-
-}
