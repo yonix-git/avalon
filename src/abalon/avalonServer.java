@@ -54,8 +54,8 @@ public class avalonServer {
         }else{
             this.mySocket2 = S;
             this.name2 = name;
-            thread T = new thread(mySocket1, mySocket2);
             int i = con.newGame(name1, name2);
+            thread T = new thread(mySocket1, mySocket2, i);
             System.out.println(i);
             T.start();
         }
@@ -63,6 +63,12 @@ public class avalonServer {
     }
 
 }
+
+
+
+
+
+
 /*in1 = new ObjectInputStream(mySocket1.getInputStream());
             conOrSing = (boolean)in1.readObject();
             do {
