@@ -22,7 +22,7 @@ public class avalonServer {
     ObjectOutputStream out1, out2;
     Object obj1, obj2, obj3, obj4, name1, name2;
     boolean connectOrNot = false;
-    Socket mySocket1, mySocket2;
+    Socket mySocket, mySocket1, mySocket2;
     boolean conOrSing, B = true;
 
     public avalonServer() throws IOException, ClassNotFoundException {
@@ -37,20 +37,26 @@ public class avalonServer {
 
         while (true) {
             
-            mySocket1 = myServer.accept();
-            veri = new verify(mySocket1, this);
+            mySocket = myServer.accept();
+            veri = new verify(mySocket, this);
             veri.start();
             
         }
         
     }
     
-    public void srartGame(Socket S) throws IOException{
+    public void srartGame(Socket S, Object name) throws IOException{
+        
+        System.out.println(B);
         if (B) {
             this.mySocket1 = S;
+            this.name1 = name;
         }else{
             this.mySocket2 = S;
+            this.name2 = name;
             thread T = new thread(mySocket1, mySocket2);
+            int i = con.newGame(name1, name2);
+            System.out.println(i);
             T.start();
         }
         B = !B;

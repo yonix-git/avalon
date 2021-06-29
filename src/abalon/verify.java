@@ -70,8 +70,8 @@ public class verify extends Thread{
             } while (!connectOrNot);
             in1 = new ObjectInputStream(S.getInputStream());
             obj1 = in1.readObject();
-            System.out.println(obj1);
-            M.srartGame(S);
+            //System.out.println(obj1);
+            M.srartGame(S, name1);
         } catch (IOException ex) {
             Logger.getLogger(verify.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
