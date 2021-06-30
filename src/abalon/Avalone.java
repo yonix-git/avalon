@@ -12,7 +12,7 @@ import java.sql.SQLException;
  *
  * @author user
  */
-public class avalon {
+public class Avalone {
 
     /**
      * @param args the command line arguments
