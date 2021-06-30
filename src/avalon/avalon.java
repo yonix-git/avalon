@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package abalon;
+package avalon;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
  *
  * @author user
  */
-public class Abalone {
+public class avalon {
 
     /**
      * @param args the command line arguments

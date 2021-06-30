@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package abalon;
+package avalon;
 
 import Net.listiner;
 import java.awt.Toolkit;
@@ -209,6 +209,9 @@ public class play {
                 return false;
         }
 
+        if (!pusible) {
+            Toolkit.getDefaultToolkit().beep();
+        }
         return pusible;
     }
 

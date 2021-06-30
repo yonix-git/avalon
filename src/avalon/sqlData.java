@@ -1,4 +1,4 @@
-package abalon;
+package avalon;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -36,29 +36,29 @@ public class sqlData {
             System.out.println("yaaaaa");
 
             // declare of statement and resultSet
-            Statement statement;
+            /*Statement statement;
             ResultSet rs;
-
+            
             // the statement to be execute
             String query = "select * from players";
-
+            
             statement = conn.createStatement();
-
+            
             // execute and get the result set.
             rs = statement.executeQuery(query);
-
+            
             // run over the resultSet
             while (rs.next()) {
-
-                System.out.print(rs.getInt("ID") + " ");
-                System.out.print(rs.getString("name") + " ");
-                System.out.print(rs.getString("nickName") + " ");
-                System.out.println("");
+            
+            System.out.print(rs.getInt("ID") + " ");
+            System.out.print(rs.getString("name") + " ");
+            System.out.print(rs.getString("nickName") + " ");
+            System.out.println("");
             }
-
+            
             // close the resorces
             rs.close();
-            statement.close();
+            statement.close();*/
 
 //Create Statment
 //Execute
