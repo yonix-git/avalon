@@ -24,7 +24,7 @@ import myClasses.inputDitels;
  */
 public class play {
 
-    private board B;
+    private board B/*, B2 = new board()*/;
     private boolean P = true;
     private listiner lis1, lis2;
 
@@ -81,6 +81,12 @@ public class play {
 
                 obj1 = new ObjectOutputStream(mySocket1.getOutputStream());
                 obj1.writeObject(this.B);
+                
+                /*for (int i = 0; i < B.getGameBoard().length; i++) {
+                for (int j = 0; j < B.getGameBoard()[0].length; j++) {
+                B2.setTYpe(i, j, B.getTYpe(B.getGameBoard().length - i - 1, B.getGameBoard()[0].length - j -1));
+                }
+                }*/
 
                 obj2 = new ObjectOutputStream(mySocket2.getOutputStream());
                 obj2.writeObject(this.B);

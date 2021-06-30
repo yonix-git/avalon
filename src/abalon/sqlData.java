@@ -36,7 +36,7 @@ public class sqlData {
             System.out.println("yaaaaa");
 
             // declare of statement and resultSet
-            /*Statement statement;
+            Statement statement;
             ResultSet rs;
             
             // the statement to be execute
@@ -58,7 +58,7 @@ public class sqlData {
             
             // close the resorces
             rs.close();
-            statement.close();*/
+            statement.close();
 
 //Create Statment
 //Execute
