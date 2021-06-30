@@ -24,6 +24,7 @@ public class thread extends Thread{
     private play pl; 
     print p = new print();
     board B = new board();
+    board B2;
     int gameID;
    
     
