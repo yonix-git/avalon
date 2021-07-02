@@ -74,20 +74,20 @@ public class play {
 
         try {
             String direction;
-            while (B.getAmountOfBlack() > 8 && B.getAmountOfWhite() > 8) {
+            while (B.getAmountOfBlack() < 6 && B.getAmountOfWhite() < 6) {
 
+                B.setBlackOrWhite(P);
                 direction = null;
                 cellIndexes point = new cellIndexes();
 
                 obj1 = new ObjectOutputStream(mySocket1.getOutputStream());
                 obj1.writeObject(this.B);
-                
+
                 /*for (int i = 0; i < B.getGameBoard().length; i++) {
                 for (int j = 0; j < B.getGameBoard()[0].length; j++) {
                 B2.setTYpe(i, j, B.getTYpe(B.getGameBoard().length - i - 1, B.getGameBoard()[0].length - j -1));
                 }
                 }*/
-
                 obj2 = new ObjectOutputStream(mySocket2.getOutputStream());
                 obj2.writeObject(this.B);
 
@@ -117,10 +117,10 @@ public class play {
             obj2 = new ObjectOutputStream(mySocket2.getOutputStream());
             obj2.writeObject(this.B);
 
-            if (B.getAmountOfWhite() == 8) {
+            if (B.getAmountOfWhite() == 6) {
                 System.out.println("black wins !!!!!!!!!!!!!!");
             }
-            if (B.getAmountOfBlack() == 8) {
+            if (B.getAmountOfBlack() == 6) {
                 System.out.println("white wins !!!!!!!!!!!!!!");
             }
         } catch (IOException iOException) {
@@ -233,9 +233,9 @@ public class play {
             return true;
         } else if (L != 0 && B.getGameBoard()[amount.getR()][amount.getC()].getType().equals(typeOfCell.notUsed)) {
             if (P) {
-                B.setAmountOfWhite(B.getAmountOfWhite() - 1);
+                B.setAmountOfWhite(B.getAmountOfWhite() + 1);
             } else {
-                B.setAmountOfBlack(B.getAmountOfBlack() - 1);
+                B.setAmountOfBlack(B.getAmountOfBlack() + 1);
             }
             return true;
         }

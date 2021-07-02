@@ -37,22 +37,22 @@ public class avalonServer {
         }
 
         while (true) {
-            
+
             mySocket = myServer.accept();
             veri = new verify(mySocket, this);
             veri.start();
-            
+
         }
-        
+
     }
-    
-    public void srartGame(Socket S, Object name) throws IOException{
-        
+
+    public void srartGame(Socket S, Object name) throws IOException {
+
         System.out.println(B);
         if (B) {
             this.mySocket1 = S;
             this.name1 = name;
-        }else{
+        } else {
             this.mySocket2 = S;
             this.name2 = name;
             int i = con.newGame(name1, name2);
@@ -64,11 +64,6 @@ public class avalonServer {
     }
 
 }
-
-
-
-
-
 
 /*in1 = new ObjectInputStream(mySocket1.getInputStream());
             conOrSing = (boolean)in1.readObject();
@@ -143,14 +138,11 @@ public class avalonServer {
             }
             }
             }while(!connectOrNot);*/
-            
-            //int i = con.newGame(name1, name2);
-            
-            /*ObjectOutputStream obo = new ObjectOutputStream(mySocket1.getOutputStream());
+//int i = con.newGame(name1, name2);
+/*ObjectOutputStream obo = new ObjectOutputStream(mySocket1.getOutputStream());
             obo.writeObject((Object)i);
             obo = new ObjectOutputStream(mySocket2.getOutputStream());
             obo.writeObject((Object)i);*/
-            
-            //System.out.println("GAME ID:" + i);
+//System.out.println("GAME ID:" + i);
             /*thread T = new thread(mySocket1, mySocket2);
             T.start();*/
