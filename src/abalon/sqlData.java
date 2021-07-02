@@ -56,12 +56,11 @@ public class sqlData {
             System.out.println("");
             }
             
+            //getLastGame("1", 0);
             // close the resorces
             rs.close();
             statement.close();
-
-//Create Statment
-//Execute
+            
         } catch (SQLException ex) {
             System.out.println("cant connect!_1");
             Logger.getLogger(sqlData.class.getName()).log(Level.SEVERE, null, ex);
@@ -115,6 +114,20 @@ public class sqlData {
         
         rs.next();
         return rs.getInt("res");
+    }
+    
+    public void getLastGame(String S, int num) throws SQLException{
+        String query = "exec setNewGame ?, ?";
+        Object obj;
+        
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, S);
+        ps.setString(2, "" + num);
+        ResultSet rs = ps.executeQuery();
+        
+        rs.next();
+        obj = rs.getObject(query);
+        System.out.println(obj);
     }
     
     /*public int getGameID(String name) throws SQLException{
