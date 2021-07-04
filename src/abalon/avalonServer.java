@@ -56,7 +56,7 @@ public class avalonServer {
             this.mySocket2 = S;
             this.name2 = name;
             int i = con.newGame(name1, name2);
-            thread T = new thread(mySocket1, mySocket2, i);
+            thread T = new thread(mySocket1, mySocket2, i, this.con, this.name1, this.name2);
             System.out.println(i);
             T.start();
         }

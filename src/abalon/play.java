@@ -24,15 +24,22 @@ import myClasses.inputDitels;
  */
 public class play {
 
-    private board B/*, B2 = new board()*/;
+    private board B;
     private boolean P = true;
     private listiner lis1, lis2;
+    toConnect con;
+    Object name1, name2;
+    int IDgame;
 
     //constructor
-    public play(listiner lis1, listiner lis2) {
+    public play(listiner lis1, listiner lis2, toConnect con, Object name1, Object name2, int IDgame) {
         this.B = new board();
         this.lis1 = lis1;
         this.lis2 = lis2;
+        this.con = con;
+        this.name1 = name1;
+        this.name2 = name2;
+        this.IDgame = IDgame;
 
         this.lis1.start();
         this.lis2.start();
@@ -119,9 +126,11 @@ public class play {
 
             if (B.getAmountOfWhite() == 6) {
                 System.out.println("black wins !!!!!!!!!!!!!!");
+                con.sql.setWinner((String)name1, IDgame);
             }
             if (B.getAmountOfBlack() == 6) {
                 System.out.println("white wins !!!!!!!!!!!!!!");
+                con.sql.setWinner((String)name2, IDgame);
             }
         } catch (IOException iOException) {
             System.out.println("abalon.play.playing() - 1");

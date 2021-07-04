@@ -24,14 +24,19 @@ public class thread extends Thread {
     private play pl;
     print p = new print();
     board B = new board();
+    toConnect con;
     board B2;
     int gameID;
+    Object name1, name2;
 
-    public thread(Socket mySocket1, Socket mySocket2, int gameID) throws IOException {
+    public thread(Socket mySocket1, Socket mySocket2, int gameID, toConnect con, Object name1, Object name2) throws IOException {
 
         this.mySocket1 = mySocket1;
         this.mySocket2 = mySocket2;
         this.gameID = gameID;
+        this.con = con;
+        this.name1 = name1;
+        this.name2 = name2;
 
     }
 
@@ -53,7 +58,7 @@ public class thread extends Thread {
         } catch (IOException ex) {
             Logger.getLogger(thread.class.getName()).log(Level.SEVERE, null, ex);
         }
-        pl = new play(lis1, lis2);
+        pl = new play(lis1, lis2, this.con, this.name1, this.name2, this.gameID);
         try {
             pl.playing(mySocket1, mySocket2);
         } catch (IOException ex) {

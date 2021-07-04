@@ -143,15 +143,15 @@ public class sqlData {
         return A;
     }
 
-    /*public int getGameID(String name) throws SQLException{
-    String query = "declare @res int exec @res = getGameID ?"
-    + " select @res as res";
-    PreparedStatement ps = conn.prepareStatement(query);
-    ps.setString(1, name);
-    ResultSet rs = ps.executeQuery();
-    
-    rs.next();
-    return rs.getInt("res");
-    
-    }*/
+    public void setWinner(String name, int IDgame) throws SQLException{
+        String query = "declare @res int exec @res = setWinner ?, ?"
+                + " select @res as res";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, name);
+        ps.setInt(2, IDgame);
+        ResultSet rs = ps.executeQuery();
+
+        rs.next();
+        System.out.println(rs.getInt("res"));
+    }
 }
