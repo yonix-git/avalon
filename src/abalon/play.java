@@ -14,6 +14,7 @@ import myClasses.board;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import myClasses.inputDitels;
@@ -136,6 +137,8 @@ public class play {
             System.out.println("abalon.play.playing() - 1");
         } catch (NumberFormatException numberFormatException) {
             System.out.println("abalon.play.playing() - 2");
+        } catch (SQLException ex) {
+            Logger.getLogger(play.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
