@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,6 +21,7 @@ import java.util.logging.Logger;
  * @author user
  */
 public class sqlData {
+
     Connection conn;
 
     public sqlData() {
@@ -33,8 +35,8 @@ public class sqlData {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = DriverManager.getConnection(DB_URL);
 
-            System.out.println("yaaaaa");
-
+            /*System.out.println("yaaaaa");
+            
             // declare of statement and resultSet
             Statement statement;
             ResultSet rs;
@@ -59,8 +61,7 @@ public class sqlData {
             //getLastGame("1", 0);
             // close the resorces
             rs.close();
-            statement.close();
-            
+            statement.close();*/
         } catch (SQLException ex) {
             System.out.println("cant connect!_1");
             Logger.getLogger(sqlData.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,25 +70,25 @@ public class sqlData {
             Logger.getLogger(sqlData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public boolean chackNameAndPass(String name, String password) throws SQLException{
-        
+
+    public boolean chackNameAndPass(String name, String password) throws SQLException {
+
         String query = "declare @res int exec @res = getNameAndPassword ?, ?"
                 + " select @res as res";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, name);
         ps.setString(2, password);
         ResultSet rs = ps.executeQuery();
-        
-        
+
         if (rs.next() && rs.getInt("res") == 1) {
             return true;
         } else {
             return false;
         }
-        
+
     }
-    public boolean newPlayer(String name, String nickName, String password, String email) throws SQLException{
+
+    public boolean newPlayer(String name, String nickName, String password, String email) throws SQLException {
         String query = "declare @res int exec @res = setNewPlayer ?, ?, ?, ?"
                 + " select @res as res";
         PreparedStatement ps = conn.prepareStatement(query);
@@ -96,40 +97,52 @@ public class sqlData {
         ps.setString(3, password);
         ps.setString(4, email);
         ResultSet rs = ps.executeQuery();
-        
+
         if (rs.next() && rs.getInt("res") == 1) {
             return true;
         } else {
             return false;
         }
     }
-    
-    public int setNewGame(String name1, String name2) throws SQLException{
+
+    public int setNewGame(String name1, String name2) throws SQLException {
         String query = "declare @res int exec @res = setNewGame ?, ?"
                 + " select @res as res";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, name1);
         ps.setString(2, name2);
         ResultSet rs = ps.executeQuery();
-        
+
         rs.next();
         return rs.getInt("res");
     }
-    
-    public void getLastGame(String S, int num) throws SQLException{
-        String query = "exec setNewGame ?, ?";
-        Object obj;
-        
+
+    public ArrayList getLastGames(String S, int num) throws SQLException {
+        String query = "select * from getlastgame(?, ?)";
+        String str = "";
+        ArrayList<String> A = new ArrayList<>();
+
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, S);
         ps.setString(2, "" + num);
         ResultSet rs = ps.executeQuery();
-        
-        rs.next();
-        obj = rs.getObject(query);
-        System.out.println(obj);
+
+        while (rs.next()) {
+
+            str += rs.getString("name1");
+            str += "   ";
+            str += rs.getString("name2");
+            str += "   ";
+            str += rs.getString("date");
+            str += "   ";
+            str += rs.getString("time");
+
+            A.add(str);
+            str = "";
+        }
+        return A;
     }
-    
+
     /*public int getGameID(String name) throws SQLException{
     String query = "declare @res int exec @res = getGameID ?"
     + " select @res as res";
